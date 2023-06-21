@@ -1,0 +1,137 @@
+.aboutas--container-bg{
+    background-color: var(--secundary-blue);
+}
+
+
+.aboutas--container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.aboutas--container-information{
+    font-family: montserrat;
+    line-height: 31px;
+    color: white;
+}
+
+.valores--container{
+    background: #181D25;
+    padding: 4em 0;
+}
+
+.valores--container-items{
+    display: flex;
+    justify-content: space-between;
+    color: snow;
+}
+
+
+.blue{
+    position: absolute;
+    width: 323px;
+    height: 2px;
+    background: #5D5FEF;
+}
+
+.fucsia{
+    position: absolute;
+    width: 323px;
+    height: 2px;
+    background: #FF00E5;
+}
+
+.green{
+    position: absolute;
+    width: 323px;
+    height: 2px;
+    background: #B6D20B;
+}
+
+.card-information{
+    background: rgba(145, 145, 145, 0.21);
+    position: relative;
+    width: 323px;
+    padding: 1.5em;
+    height: 250px;
+    line-height: 27px;
+}
+
+.card-information h3{
+    font-family: montserrat;
+    padding-bottom: 0.5em;
+    font-weight: 600;
+    font-size: 24px;
+    line-height: 29px;
+}
+
+.opiniones--container{
+    padding: 8em 0;
+    color: white;
+}
+
+.opiniones-title{
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 24px;
+    line-height: 29px;
+    text-align: center;
+}
+
+.opiniones-logo{
+    text-align: center;
+}
+
+.opiniones-title span{
+    color: var(--primary-blue);
+}
+
+.opiniones--card-items{
+    color: #CCCCCC;
+    padding: 4em 0;
+    display: grid;
+    grid-gap: 15px;
+    grid-template-columns: auto auto;
+    justify-content: center;
+}
+
+.card--item{
+    background: #05305A;
+    width: 400px;
+    height: 150px;   
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.25);
+    border-radius: 36px;
+    padding: 2em;
+    line-height: 29px;
+}
+
+.card--item-user{
+    font-weight: 600;
+    font-size: 18px;
+    font-family: Montserrat;
+}
+
+.card--item-user span{
+    /* position: absolute; */
+    width: 44px;
+    height: 44px;
+    border-radius: 30px;
+}
+
+.unete-content{
+    z-index: 100;
+    position: absolute;
+    padding: 8em 4em;
+    width: 450px;
+    line-height: 30px;
+    color: #CCCCCC;
+}
+
+.unete-content h2{
+    padding-bottom: 1em;
+}
+.unete-img{
+    width: 100%;
+    text-align: center;
+}

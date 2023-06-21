@@ -58,6 +58,56 @@ def delete_user(user_id):
     db.session.commit()
     return jsonify({'message': 'User deleted'})
 
+@user.route('/users/signin', methods=['POST'])
+def signin():
+    data = request.get_json()
+    user = User(
+        email=data['email'],
+        password=data['password'],
+    )
+    signinUser = User.query.filter_by(email=user.email, password=user.password).first()
+    if signinUser:
+        return jsonify({
+            'id': signinUser.id,
+            'name': signinUser.name,
+            'email': signinUser.email,
+            'is_admin': signinUser.is_admin
+        }), 200
+    else:
+        return jsonify({'message': 'Invalid Email or Password.'}), 401
+
+
+
+@user.route('/users/register', methods=['POST'])
+def register():
+    data = request.get_json()
+    user = User(
+        name=data['name'],
+        email=data['email'],
+        password=data['password'],
+    )
+    newUser = User.query.filter_by(email=user.email).first()
+    if not newUser:
+        db.session.add(user)
+        db.session.commit()
+        return jsonify({
+            'id': user.id,
+            'name': user.name,
+            'email': user.email,
+            'is_admin': user.is_admin
+        }), 201
+    return jsonify({'message': 'User already exists.'}), 409
+
+
+@user.route('/users/createadmin', methods=['GET'])
+def create_admin():
+    try:
+        user = User(name='Day', email='admin@example.com', password='1234', is_admin=True)
+        newUser = user.save()
+        return jsonify(newUser), 200
+    except Exception as error:
+        return jsonify({'message': str(error)}), 500
+
 
 def user_to_dict(user):
     return {

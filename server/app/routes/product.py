@@ -27,6 +27,26 @@ def get_products():
         })
     return jsonify(result)
 
+@producto.route('/products/<category>', methods=['GET'])
+def get_products_by_category(category):
+    products = Product.query.filter_by(category=category).all()
+    result = []
+    for product in products:
+        result.append({
+            'id': product.id,
+            'name': product.name,
+            'image': product.image,
+            'brand': product.brand,
+            'price': product.price,
+            'category': product.category,
+            'count_in_stock': product.count_in_stock,
+            'description': product.description,
+            'rating': product.rating,
+            'num_reviews': product.num_reviews
+        })
+    return jsonify(result)
+
+
 
 @producto.route('/products/<int:product_id>', methods=['GET'])
 def get_product(product_id):
