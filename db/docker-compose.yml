@@ -1,0 +1,64 @@
+version: "2.1"
+services:
+  master-0:
+    image: docker.io/bitnami/postgresql-repmgr:14
+    ports:
+      - 5532:5432
+    volumes:
+      - master_0_data:/bitnami/postgresql
+    environment:
+      - POSTGRESQL_POSTGRES_PASSWORD=adminpassword
+      - POSTGRESQL_USERNAME=grupo7
+      - POSTGRESQL_PASSWORD=grupo7
+      - POSTGRESQL_DATABASE=sa_tienda
+      - POSTGRESQL_NUM_SYNCHRONOUS_REPLICAS=1
+      - REPMGR_PRIMARY_HOST=master-0
+      - REPMGR_PARTNER_NODES=master-1,master-0
+      - REPMGR_NODE_NAME=master-0
+      - REPMGR_NODE_NETWORK_NAME=master-0
+      - REPMGR_USERNAME=repmgr
+      - REPMGR_PASSWORD=repmgrpassword
+  master-1:
+    image: docker.io/bitnami/postgresql-repmgr:14
+    ports:
+      - 5533:5432
+    volumes:
+      - master_1_data:/bitnami/postgresql
+    environment:
+      - POSTGRESQL_POSTGRES_PASSWORD=adminpassword
+      - POSTGRESQL_USERNAME=grupo7
+      - POSTGRESQL_PASSWORD=grupo7
+      - POSTGRESQL_DATABASE=sa_tienda
+      - POSTGRESQL_NUM_SYNCHRONOUS_REPLICAS=1
+      - REPMGR_PRIMARY_HOST=master-0
+      - REPMGR_PARTNER_NODES=master-0,master-1
+      - REPMGR_NODE_NAME=master-1
+      - REPMGR_NODE_NETWORK_NAME=master-1
+      - REPMGR_USERNAME=repmgr
+      - REPMGR_PASSWORD=repmgrpassword
+  pgpool:
+    image: docker.io/bitnami/pgpool:4
+    ports:
+      - 5432:5432
+    environment:
+      - PGPOOL_BACKEND_NODES=0:master-0:5432,1:master-1:5432
+      - PGPOOL_SR_CHECK_USER=repmgr
+      - PGPOOL_SR_CHECK_PASSWORD=repmgrpassword
+      - PGPOOL_ENABLE_LDAP=no
+      - PGPOOL_POSTGRES_USERNAME=postgres
+      - PGPOOL_POSTGRES_PASSWORD=adminpassword
+      - PGPOOL_ADMIN_USERNAME=admin
+      - PGPOOL_ADMIN_PASSWORD=adminpassword
+      - PGPOOL_ENABLE_LOAD_BALANCING=yes
+      - PGPOOL_POSTGRES_CUSTOM_USERS=customuser
+      - PGPOOL_POSTGRES_CUSTOM_PASSWORDS=custompassword
+    healthcheck:
+      test: ["CMD", "/opt/bitnami/scripts/pgpool/healthcheck.sh"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+volumes:
+  master_0_data:
+    driver: local
+  master_1_data:
+    driver: local

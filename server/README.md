@@ -8,3 +8,5 @@ docker run -p 5000:5000 flask-app
 http://localhost:5000
 
 docker-compose up -d
+
+docker exec -it a3003209969a834e09a57b149383ed69ce4d5fecde0fdbe2f2141445f3a551bb bash

@@ -20,4 +20,4 @@ class Order(db.Model):
     created_at = db.Column(db.TIMESTAMP, default=db.func.now())
     updated_at = db.Column(db.TIMESTAMP, default=db.func.now())
 
-    order_items = db.relationship('OrderItem', backref='order')
+    order_items = db.relationship('OrderItem', backref='order', primaryjoin="Order.id == OrderItem.order_id")

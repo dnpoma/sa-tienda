@@ -11,3 +11,11 @@ class Review(db.Model):
     comment = db.Column(db.Text, nullable=False)
     created_at = db.Column(db.TIMESTAMP, default=db.func.now())
     updated_at = db.Column(db.TIMESTAMP, default=db.func.now())
+    
+    def serialize(self):
+        return {
+            'id': self.id,
+            'name': self.name,
+            'rating': self.rating,
+            'comment': self.comment
+        }

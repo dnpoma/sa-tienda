@@ -23,15 +23,13 @@ const listProducts =
   async (dispatch) => {
     try {
       dispatch({ type: PRODUCT_LIST_REQUEST });
-      const { data } = await axios.get(
-        "/products"
-        // "/api/products?category=" +
-        //   category +
-        //   "&searchKeyword=" +
-        //   searchKeyword +
-        //   "&sortOrder=" +
-        //   sortOrder
-      );
+      const { data } = await axios.get("/products", {
+        params: {
+          category: category,
+          searchKeyword: searchKeyword,
+          sortOrder: sortOrder,
+        },
+      });
       dispatch({ type: PRODUCT_LIST_SUCCESS, payload: data });
     } catch (error) {
       dispatch({ type: PRODUCT_LIST_FAIL, payload: error.message });
@@ -44,7 +42,7 @@ const saveProduct = (product) => async (dispatch, getState) => {
     const {
       userSignin: { userInfo },
     } = getState();
-    if (!product._id) {
+    if (!product.id) {
       const { data } = await Axios.post("/products", product, {
         headers: {
           Authorization: "Bearer " + userInfo.token,
@@ -52,7 +50,7 @@ const saveProduct = (product) => async (dispatch, getState) => {
       });
       dispatch({ type: PRODUCT_SAVE_SUCCESS, payload: data });
     } else {
-      const { data } = await Axios.put("/products/" + product._id, product, {
+      const { data } = await Axios.put("/products/" + product.id, product, {
         headers: {
           Authorization: "Bearer " + userInfo.token,
         },

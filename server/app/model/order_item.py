@@ -11,4 +11,6 @@ class OrderItem(db.Model):
     image = db.Column(db.String(255), nullable=False)
     price = db.Column(db.Float, nullable=False)
     product_id = db.Column(db.Integer, db.ForeignKey('product.id'), nullable=False)
+
     order_id = db.Column(db.Integer, db.ForeignKey('order.id'), nullable=False)
+    product_id = db.Column(db.Integer, db.ForeignKey('product.id', ondelete='CASCADE'), nullable=False)

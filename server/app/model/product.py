@@ -7,6 +7,7 @@ from app import db
 
 class Product(db.Model):
     id = db.Column(db.Integer, primary_key=True)
+
     name = db.Column(db.String(255), nullable=False)
     image = db.Column(db.String(255), nullable=False)
     brand = db.Column(db.String(255), nullable=False)
@@ -19,7 +20,20 @@ class Product(db.Model):
     created_at = db.Column(db.TIMESTAMP, default=db.func.now())
     updated_at = db.Column(db.TIMESTAMP, default=db.func.now())
 
-    order_items = relationship('OrderItem', backref='product')
+    # order_items = db.relationship('OrderItem', backref='product', foreign_keys='OrderItem.product_id')
 
 
 
+    def serialize(self):
+        return {
+            'id': self.id,
+            'name': self.name,
+            'image': self.image,
+            'brand': self.brand,
+            'price': self.price,
+            'category': self.category,
+            'count_in_stock': self.count_in_stock,
+            'description': self.description,
+            'rating': self.rating,
+            'num_reviews': self.num_reviews
+        }

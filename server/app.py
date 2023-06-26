@@ -22,6 +22,7 @@ app.register_blueprint(shipping)
 app.register_blueprint(review)
 app.register_blueprint(payment)
 app.register_blueprint(orderItem)
+app.register_blueprint(order)
 
 
 if __name__ == '__main__':
