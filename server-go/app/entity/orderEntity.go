@@ -41,4 +41,3 @@ type Order struct {
 	Timestamps    time.Time   `json:"timestamps"`
 }
 
-// No se necesita exportar el modelo en Go ya que no se usará para conectarse directamente con Firebase.

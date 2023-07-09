@@ -2,23 +2,38 @@ package main
 
 import (
 	"encoding/json"
-	"net/http"
 	"math/rand"
+	"net/http"
+
+	"github.com/dnpoma/sa-tienda/server-go/app/entity"
+	"github.com/dnpoma/sa-tienda/server-go/app/repository"
 )
 
 
 
 var (
-repo repository.UserRepository = repository.NewUserRepository() 
+	repoUser repository.UserRepository = repository.NewUserRepository() 
+	repoOrder repository.OrderRepository = repository.NewOrderRepository()
+	repoProduct repository.ProductRepository = repository.NewProductRepository()
 )
 
-const (
-	projectId      string = "a-3a604"
-)
 
-func getUser(response http.ResponseWriter , request *http.Request)  {
+
+func GetProduct(response http.ResponseWriter , request *http.Request)  {
 	response.Header().Set("Content-Type","application/json")
-	users , err := repo.FindAll()
+	product , err := repoProduct.FindAllProduct()
+	if err !=nil {
+		response.WriteHeader(http.StatusInternalServerError)
+		response.Write([]byte(`{"error":"Error Getting the Product"}`))
+		return
+	}
+	response.WriteHeader(http.StatusOK)
+	json.NewEncoder(response).Encode(product)
+}
+
+func GetUser(response http.ResponseWriter , request *http.Request)  {
+	response.Header().Set("Content-Type","application/json")
+	users , err := repoUser.FindAll()
 	if err !=nil {
 		response.WriteHeader(http.StatusInternalServerError)
 		response.Write([]byte(`{"error":"Error Getting the Users"}`))
@@ -28,7 +43,7 @@ func getUser(response http.ResponseWriter , request *http.Request)  {
 	json.NewEncoder(response).Encode(users)
 }
 
-func addUser(response http.ResponseWriter , request *http.Requsest){
+func AddUser(response http.ResponseWriter , request *http.Request){
 	response.Header().Set("Content-Type","application/json")
 	var user entity.User
 	err:= json.NewDecoder(request.Body).Decode(&user)
@@ -38,7 +53,7 @@ func addUser(response http.ResponseWriter , request *http.Requsest){
 		return
 	}
 	user.ID = rand.Int63()
-	repo.Save(&user)
+	repoUser.Save(&user)
 	response.WriteHeader(http.StatusOK)
 	json.NewEncoder(response).Encode(user)
 }
