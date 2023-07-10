@@ -1,10 +1,17 @@
-version: "3"
+version: "3.8"
 services:
   app:
     build:
       context: .
       dockerfile: Dockerfile
-    # volumes:
-    # - ./src:/app/src
+    #  volumes:
+    #  - ./src:/app/src
+    networks:
+      - tienda_default
     ports:
       - "3000:3000"
+    stdin_open: true
+    tty: true
+networks:
+  tienda_default:
+    external: true
