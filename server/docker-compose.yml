@@ -10,7 +10,7 @@ services:
       - 5000:5000
     restart: always
     networks:
-      - tienda_sa_default
+      - tienda_default
 networks:
-  tienda_sa_default:
+  tienda_default:
     external: true
