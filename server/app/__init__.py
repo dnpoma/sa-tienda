@@ -17,7 +17,7 @@ def create_app():
     db.init_app(app)
 
 
-    app.config['MONGO_URI'] = 'mongodb://localhost:27017/amazona'
+    app.config['MONGO_URI'] = 'mongodb://localhost:27018/amazona'
 
     mongo.init_app(app)
 

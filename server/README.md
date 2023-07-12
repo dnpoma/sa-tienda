@@ -1,4 +1,4 @@
-Ejecuta el siguiente comando para construir la imagen de Docker:
+## Ejecuta el siguiente comando para construir la imagen de Docker:
 
 docker build -t flask-app .
 
@@ -11,8 +11,16 @@ docker-compose up -d
 
 docker exec -it #### bash
 
-In docker container terminal:
+## In docker container terminal:
 
 pip install flask-cors
 
 pip install pymongo
+
+## To postgrest
+
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:adminpassword@tienda-pgpool-1:5432/sa_tienda'
+
+## To mongo
+
+app.config['MONGO_URI'] = 'mongodb://localhost:27018/amazona'
