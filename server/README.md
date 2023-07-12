@@ -14,3 +14,5 @@ docker exec -it #### bash
 In docker container terminal:
 
 pip install flask-cors
+
+pip install pymongo

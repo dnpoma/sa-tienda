@@ -47,7 +47,7 @@ function ProductScreen(props) {
   return (
     <div>
       <div className="back-to-result">
-        <Link to="/">Regresar</Link>
+        <Link to="/store">Regresar</Link>
       </div>
       {loading ? (
         <div>Cargando...</div>
@@ -68,7 +68,7 @@ function ProductScreen(props) {
                   <a href="#reviews">
                     <Rating
                       value={product.rating}
-                      text={product.numReviews + " reviews"}
+                      text={product.num_reviews + " reviews"}
                     />
                   </a>
                 </li>
@@ -86,7 +86,7 @@ function ProductScreen(props) {
                 <li>Precio: {product.price}</li>
                 <li>
                   Estado:{" "}
-                  {product.countInStock > 0 ? "En stock" : "No disponible."}
+                  {product.count_in_stock > 0 ? "En stock" : "No disponible."}
                 </li>
                 <li>
                   Qty:{" "}
@@ -96,7 +96,7 @@ function ProductScreen(props) {
                       setQty(e.target.value);
                     }}
                   >
-                    {[...Array(product.countInStock).keys()].map((x) => (
+                    {[...Array(product.count_in_stock).keys()].map((x) => (
                       <option key={x + 1} value={x + 1}>
                         {x + 1}
                       </option>
@@ -104,7 +104,7 @@ function ProductScreen(props) {
                   </select>
                 </li>
                 <li>
-                  {product.countInStock > 0 && (
+                  {product.count_in_stock > 0 && (
                     <button
                       onClick={handleAddToCart}
                       className="button primary"
@@ -116,7 +116,7 @@ function ProductScreen(props) {
               </ul>
             </div>
           </div>
-          <div className="content-margined">
+          {/* <div className="content-margined">
             <h2>Reseñas</h2>
             {!product.reviews.length && <div>No hay reseñas disponibles</div>}
             <ul className="review" id="reviews">
@@ -126,7 +126,7 @@ function ProductScreen(props) {
                   <div>
                     <Rating value={review.rating}></Rating>
                   </div>
-                  <div>{review.createdAt.substring(0, 10)}</div>
+                  <div>{review.created_at.substring(0, 10)}</div>
                   <div>{review.comment}</div>
                 </li>
               ))}
@@ -173,7 +173,7 @@ function ProductScreen(props) {
                 )}
               </li>
             </ul>
-          </div>
+          </div> */}
         </>
       )}
     </div>

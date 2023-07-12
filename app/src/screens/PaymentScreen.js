@@ -1,18 +1,18 @@
-import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
-import { useSelector, useDispatch } from 'react-redux';
-import { savePayment } from '../actions/cartActions';
-import CheckoutSteps from '../components/CheckoutSteps';
+import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import { savePayment } from "../actions/cartActions";
+import CheckoutSteps from "../components/CheckoutSteps";
 
 function PaymentScreen(props) {
-  const [paymentMethod, setPaymentMethod] = useState('');
+  const [payment_method, setpayment_method] = useState("");
 
   const dispatch = useDispatch();
 
   const submitHandler = (e) => {
     e.preventDefault();
-    dispatch(savePayment({ paymentMethod }));
-    props.history.push('placeorder');
+    dispatch(savePayment({ payment_method }));
+    props.history.push("placeorder");
   };
   return (
     <div>
@@ -28,12 +28,12 @@ function PaymentScreen(props) {
               <div>
                 <input
                   type="radio"
-                  name="paymentMethod"
-                  id="paymentMethod"
+                  name="payment_method"
+                  id="payment_method"
                   value="paypal"
-                  onChange={(e) => setPaymentMethod(e.target.value)}
+                  onChange={(e) => setpayment_method(e.target.value)}
                 ></input>
-                <label for="paymentMethod">Paypal</label>
+                <label for="payment_method">Paypal</label>
               </div>
             </li>
 

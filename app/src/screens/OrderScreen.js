@@ -42,8 +42,8 @@ function OrderScreen(props) {
               {order.shipping.postalCode}, {order.shipping.country},
             </div>
             <div>
-              {order.isDelivered
-                ? "Entrega en " + order.deliveredAt
+              {order.is_delivered
+                ? "Entrega en " + order.delivered_at
                 : "No entregado."}
             </div>
           </div>
@@ -51,7 +51,7 @@ function OrderScreen(props) {
             <h3>Pago</h3>
             <div>Método de Pago: {order.payment.paymentMethod}</div>
             <div>
-              {order.isPaid ? "Pagado en " + order.paidAt : "No Pagado."}
+              {order.is_paid ? "Pagado en " + order.paid_at : "No Pagado."}
             </div>
           </div>
           <div>
@@ -85,9 +85,9 @@ function OrderScreen(props) {
           <ul>
             <li className="placeorder-actions-payment">
               {loadingPay && <div>Finalizando Pago...</div>}
-              {!order.isPaid && (
+              {!order.is_paid && (
                 <PaypalButton
-                  amount={order.totalPrice}
+                  amount={order.total_price}
                   onSuccess={handleSuccessPayment}
                 />
               )}
@@ -97,19 +97,19 @@ function OrderScreen(props) {
             </li>
             <li>
               <div>Items</div>
-              <div>${order.itemsPrice}</div>
+              <div>${order.items_price}</div>
             </li>
             <li>
               <div>Envio</div>
-              <div>${order.shippingPrice}</div>
+              <div>${order.shipping_price}</div>
             </li>
             <li>
               <div>Impuesto</div>
-              <div>${order.taxPrice}</div>
+              <div>${order.tax_price}</div>
             </li>
             <li>
               <div>Total</div>
-              <div>${order.totalPrice}</div>
+              <div>${order.total_price}</div>
             </li>
           </ul>
         </div>

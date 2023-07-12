@@ -1,32 +1,32 @@
-import React from 'react';
-import { BrowserRouter, Route, Link } from 'react-router-dom';
-import './App.css';
-import HomeScreen from './screens/HomeScreen';
-import ProductScreen from './screens/ProductScreen';
-import CartScreen from './screens/CartScreen';
-import SigninScreen from './screens/SigninScreen';
-import { useSelector } from 'react-redux';
-import RegisterScreen from './screens/RegisterScreen';
-import ProductsScreen from './screens/ProductsScreen';
-import ShippingScreen from './screens/ShippingScreen';
-import PaymentScreen from './screens/PaymentScreen';
-import PlaceOrderScreen from './screens/PlaceOrderScreen';
-import OrderScreen from './screens/OrderScreen';
-import ProfileScreen from './screens/ProfileScreen';
-import OrdersScreen from './screens/OrdersScreen';
-import Footer from './components/Footer';
-import Home from './screens/Home';
-import AboutAs from './screens/AboutAs';
+import React from "react";
+import { BrowserRouter, Route, Link } from "react-router-dom";
+import "./App.css";
+import HomeScreen from "./screens/HomeScreen";
+import ProductScreen from "./screens/ProductScreen";
+import CartScreen from "./screens/CartScreen";
+import SigninScreen from "./screens/SigninScreen";
+import { useSelector } from "react-redux";
+import RegisterScreen from "./screens/RegisterScreen";
+import ProductsScreen from "./screens/ProductsScreen";
+import ShippingScreen from "./screens/ShippingScreen";
+import PaymentScreen from "./screens/PaymentScreen";
+import PlaceOrderScreen from "./screens/PlaceOrderScreen";
+import OrderScreen from "./screens/OrderScreen";
+import ProfileScreen from "./screens/ProfileScreen";
+import OrdersScreen from "./screens/OrdersScreen";
+import Footer from "./components/Footer";
+import Home from "./screens/Home";
+import AboutAs from "./screens/AboutAs";
 
 function App() {
   const userSignin = useSelector((state) => state.userSignin);
   const { userInfo } = userSignin;
 
   const openMenu = () => {
-    document.querySelector('.sidebar').classList.add('open');
+    document.querySelector(".sidebar").classList.add("open");
   };
   const closeMenu = () => {
-    document.querySelector('.sidebar').classList.remove('open');
+    document.querySelector(".sidebar").classList.remove("open");
   };
   return (
     <BrowserRouter>
@@ -45,7 +45,7 @@ function App() {
             ) : (
               <Link to="/signin">Ingresar</Link>
             )}
-            {userInfo && userInfo.isAdmin && (
+            {userInfo && userInfo.is_admin && (
               <div className="dropdown">
                 <a href="#">Admin</a>
                 <ul className="dropdown-content">
@@ -58,7 +58,7 @@ function App() {
             )}
           </div>
         </header>
-        <aside className="sidebar">
+        {/* <aside className="sidebar">
           <h3>Categorias</h3>
           <button className="sidebar-close-button" onClick={closeMenu}>
             x
@@ -70,11 +70,11 @@ function App() {
 
             <li>
               <Link to="/category/Juegos">Juegos</Link>
-            </li>
+            </li>s
           </ul>
-        </aside>
+        </aside> */}
         <main className="main">
-        <div className="content">
+          <div className="content">
             <Route path="/profile" component={ProfileScreen} />
             <Route path="/order/:id" component={OrderScreen} />
             <Route path="/products" component={ProductsScreen} />
@@ -89,10 +89,10 @@ function App() {
             <Route path="/store" component={HomeScreen} />
             <Route path="/orders" component={OrdersScreen} />
           </div>
-            <Route path="/aboutas" component={AboutAs} />
-            <Route path="/" exact={true} component={Home}/>
+          <Route path="/aboutas" component={AboutAs} />
+          <Route path="/" exact={true} component={Home} />
         </main>
-        <Footer/>
+        <Footer />
       </div>
     </BrowserRouter>
   );

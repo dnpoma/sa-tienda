@@ -1,6 +1,6 @@
 CREATE DATABASE sa_tienda;
 
-
+-- Models
 CREATE TABLE product (
   id SERIAL PRIMARY KEY,
   name VARCHAR(255) NOT NULL,
@@ -74,6 +74,13 @@ CREATE TABLE review (
   comment TEXT NOT NULL,
   created_at TIMESTAMP DEFAULT NOW(),
   updated_at TIMESTAMP DEFAULT NOW()
+);
+
+-- Relations
+CREATE TABLE product_review (
+  product_id INTEGER REFERENCES product(id),
+  review_id INTEGER REFERENCES review(id),
+  PRIMARY KEY (product_id, review_id)
 );
 
 

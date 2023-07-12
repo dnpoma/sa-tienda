@@ -15,7 +15,7 @@ function ProductsScreen(props) {
   const [image, setImage] = useState("");
   const [brand, setBrand] = useState("");
   const [category, setCategory] = useState("");
-  const [countInStock, setCountInStock] = useState("");
+  const [count_in_stock, setcount_in_stock] = useState("");
   const [description, setDescription] = useState("");
   const [uploading, setUploading] = useState(false);
   const productList = useSelector((state) => state.productList);
@@ -55,7 +55,7 @@ function ProductsScreen(props) {
     setImage(product.image);
     setBrand(product.brand);
     setCategory(product.category);
-    setCountInStock(product.countInStock);
+    setcount_in_stock(product.count_in_stock);
   };
   const submitHandler = (e) => {
     e.preventDefault();
@@ -67,7 +67,7 @@ function ProductsScreen(props) {
         image,
         brand,
         category,
-        countInStock,
+        count_in_stock,
         description,
       })
     );
@@ -158,13 +158,13 @@ function ProductsScreen(props) {
                 ></input>
               </li>
               <li>
-                <label htmlFor="countInStock">Existencia</label>
+                <label htmlFor="count_in_stock">Existencia</label>
                 <input
                   type="text"
-                  name="countInStock"
-                  value={countInStock}
-                  id="countInStock"
-                  onChange={(e) => setCountInStock(e.target.value)}
+                  name="count_in_stock"
+                  value={count_in_stock}
+                  id="count_in_stock"
+                  onChange={(e) => setcount_in_stock(e.target.value)}
                 ></input>
               </li>
               <li>
@@ -214,6 +214,7 @@ function ProductsScreen(props) {
               <th>Precio</th>
               <th>Categoria</th>
               <th>Marca</th>
+              <th>Cantidad</th>
               <th>Acción</th>
             </tr>
           </thead>
@@ -225,6 +226,7 @@ function ProductsScreen(props) {
                 <td>{product.price}</td>
                 <td>{product.category}</td>
                 <td>{product.brand}</td>
+                <td>{product.count_in_stock}</td>
                 <td>
                   <button className="button" onClick={() => openModal(product)}>
                     Editar

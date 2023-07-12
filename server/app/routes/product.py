@@ -47,7 +47,7 @@ def add_review(id):
             'comment': request.json.get('comment')
         }
         product['reviews'].append(review)
-        product['numReviews'] = len(product['reviews'])
+        product['num_reviews'] = len(product['reviews'])
         product['rating'] = sum(review['rating'] for review in product['reviews']) / len(product['reviews'])
         
         collection.update_one({'_id': id}, {'$set': product})
@@ -68,7 +68,7 @@ def update_product(id):
         product.image = request.json.get('image')
         product.brand = request.json.get('brand')
         product.category = request.json.get('category')
-        count_in_stock = request.json.get('countInStock')
+        count_in_stock = request.json.get('count_in_stock')
         product.count_in_stock = int(count_in_stock) if count_in_stock is not None else 0
         product.description = request.json.get('description')
         db.session.commit()
@@ -95,10 +95,10 @@ def create_product():
         image=request.json.get('image'),
         brand=request.json.get('brand'),
         category=request.json.get('category'),
-        count_in_stock=int(request.json.get('countInStock')),
+        count_in_stock=int(request.json.get('count_in_stock')),
         description=request.json.get('description'),
         rating=float(request.json.get('rating', 0)),
-        num_reviews=int(request.json.get('numReviews', 0))
+        num_reviews=int(request.json.get('num_reviews', 0))
     )
     db.session.add(product)
     db.session.commit()
@@ -181,10 +181,10 @@ def create_product():
 #     image = request.json.get('image')
 #     brand = request.json.get('brand')
 #     category = request.json.get('category')
-#     count_in_stock = request.json.get('countInStock')
+#     count_in_stock = request.json.get('count_in_stock')
 #     description = request.json.get('description')
 #     rating = request.json.get('rating', 0)
-#     num_reviews = request.json.get('numReviews', 0)
+#     num_reviews = request.json.get('num_reviews', 0)
 
 #     if not all([name, price, image, brand, category, count_in_stock, description]):
 #         return jsonify({'message': 'Missing required fields'}), 400

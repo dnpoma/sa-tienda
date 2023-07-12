@@ -5,6 +5,7 @@ from sqlalchemy.orm import relationship
 from app import db
 
 class OrderItem(db.Model):
+    __tablename__ = 'order_item'
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(255), nullable=False)
     qty = db.Column(db.Integer, nullable=False)

@@ -5,5 +5,6 @@ from sqlalchemy.orm import relationship
 from app import db
 
 class Payment(db.Model):
+    __tablename__ = 'payment'
     id = db.Column(db.Integer, primary_key=True)
     payment_method = db.Column(db.String(255), nullable=False)

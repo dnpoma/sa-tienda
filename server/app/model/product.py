@@ -6,6 +6,7 @@ from app import db
 
 
 class Product(db.Model):
+    __tablename__ = 'product'
     id = db.Column(db.Integer, primary_key=True)
 
     name = db.Column(db.String(255), nullable=False)
@@ -20,6 +21,8 @@ class Product(db.Model):
     created_at = db.Column(db.TIMESTAMP, default=db.func.now())
     updated_at = db.Column(db.TIMESTAMP, default=db.func.now())
 
+
+    reviews = db.relationship('Review', backref='product')
     # order_items = db.relationship('OrderItem', backref='product', foreign_keys='OrderItem.product_id')
 
 

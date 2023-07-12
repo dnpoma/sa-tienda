@@ -17,7 +17,7 @@ const addToCart = (productId, qty) => async (dispatch, getState) => {
         name: data.name,
         image: data.image,
         price: data.price,
-        countInStock: data.countInStock,
+        count_in_stock: data.count_in_stock,
         qty,
       },
     });
