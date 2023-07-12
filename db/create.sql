@@ -86,11 +86,11 @@ CREATE TABLE product_review (
 
 INSERT INTO product (name, image, brand, price, category, count_in_stock, description, rating, num_reviews)
 VALUES
-('Product 1', 'image1.jpg', 'Brand A', 9.99, 'Category 1', 10, 'Description 1', 4, 8),
-('Product 2', 'image2.jpg', 'Brand B', 19.99, 'Category 2', 5, 'Description 2', 3, 2),
-('Product 3', 'image3.jpg', 'Brand C', 14.99, 'Category 1', 2, 'Description 3', 5, 12),
-('Product 4', 'image4.jpg', 'Brand A', 29.99, 'Category 3', 8, 'Description 4', 2, 1),
-('Product 5', 'image5.jpg', 'Brand B', 39.99, 'Category 2', 0, 'Description 5', 5, 15);
+('Product 1', 'https://cdn.glitch.global/934ab745-2e5a-4075-81a2-abc26b94ccc3/descarga%20(1).jpeg?v=1687540018218', 'Brand A', 9.99, 'Category 1', 10, 'Description 1', 4, 8),
+('Product 2', 'https://cdn.glitch.global/934ab745-2e5a-4075-81a2-abc26b94ccc3/descarga%20(2).jpeg?v=1687540021636', 'Brand B', 19.99, 'Category 2', 5, 'Description 2', 3, 2),
+('Product 3', 'image3.jphttps://cdn.glitch.global/934ab745-2e5a-4075-81a2-abc26b94ccc3/descarga.jpeg?v=1687540025774g', 'Brand C', 14.99, 'Category 1', 2, 'Description 3', 5, 12),
+('Product 4', 'image4.https://cdn.glitch.global/934ab745-2e5a-4075-81a2-abc26b94ccc3/images.jpeg?v=1687540029398', 'Brand A', 29.99, 'Category 3', 8, 'Description 4', 2, 1),
+('Product 5', 'https://cdn.glitch.global/934ab745-2e5a-4075-81a2-abc26b94ccc3/The-Last-of-Us-Box-Art.jpg?v=1687540035123', 'Brand B', 39.99, 'Category 2', 0, 'Description 5', 5, 15);
 
 INSERT INTO "user" (name, email, password, is_admin)
 VALUES
