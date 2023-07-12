@@ -3,7 +3,7 @@ from flask import jsonify, Blueprint, request
 from app.model.product import db, Product
 from app.model.order_item import db, OrderItem
 from app.model.order import db, Order
-
+from app.model.review import db, Review
 
 producto = Blueprint('producto', __name__)
 
@@ -58,6 +58,22 @@ def add_review(id):
         }), 201
     else:
         return jsonify({'message': 'Product Not Found'}), 404
+    
+    
+@producto.route('/products/<int:product_id>/reviews', methods=['GET'])
+def get_reviews(product_id):
+    product = Product.query.get(product_id)
+
+    if product:
+        reviews = Review.query.filter_by(product_id=product_id).all()
+
+        serialized_reviews = [review.serialize() for review in reviews]
+
+        return jsonify(serialized_reviews), 200
+    else:
+        return jsonify({'message': 'Product Not Found'}), 404
+
+
 
 @producto.route('/products/<int:id>', methods=['PUT'])
 def update_product(id):
