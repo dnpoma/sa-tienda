@@ -1,5 +1,5 @@
 from flask import Flask
-from flask_cors import CORS
+# from flask_cors import CORS
 from app.routes.product import producto
 from app.routes.user import user
 from app.routes.shipping import shipping
@@ -14,7 +14,7 @@ from app.route import tienda
 from app import create_app
 
 app = create_app()
-CORS(app)
+# CORS(app)
 
 # Register routes
 app.register_blueprint(producto)

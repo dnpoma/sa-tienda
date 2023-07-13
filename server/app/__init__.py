@@ -5,6 +5,9 @@ from pymongo import MongoClient
 
 db = SQLAlchemy()
 mongo = PyMongo()
+client = MongoClient('mongodb://sharded-mongodb-docker-mongos-router0-1:27017')
+
+
 
 def create_app():
     app = Flask(__name__)
@@ -12,10 +15,12 @@ def create_app():
 
      # app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://grupo7:grupo7@master-1:5432/sa_tienda'
     app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://zuka:zukaritas@postgresql-master:5432/sa_tienda'
+
     db.init_app(app)
 
-    app.config['MONGO_URI'] = 'mongodb://localhost:27018'
+    app.config['MONGO_URI'] = 'mongodb://sharded-mongodb-docker-mongos-router0-1:27017'
     client = MongoClient(app.config['MONGO_URI'])
+    mongo.init_app(app)
 
     try:
     # Check if MongoDB connection is successful
@@ -24,8 +29,7 @@ def create_app():
     except Exception as e:
       print("Failed to connect to MongoDB:", str(e))
 
-    mongo.init_app(app)
 
-    return app
+    return  app
 
 app = create_app()

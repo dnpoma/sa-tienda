@@ -10,7 +10,7 @@ services:
       - 5000:5000
     restart: always
     networks:
-      - tienda_default
+      - sharded-mongodb-docker_internalnetwork
 networks:
-  tienda_default:
+  sharded-mongodb-docker_internalnetwork:
     external: true
