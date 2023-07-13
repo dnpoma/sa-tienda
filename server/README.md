@@ -11,11 +11,19 @@ docker-compose up -d
 
 docker exec -it #### bash
 
+## To
+
+docker build -t server-app .
+
 ## In docker container terminal:
 
 pip install flask-cors
 
 pip install pymongo
+
+pip install flask_pymongo
+
+python -m pip install -U pymongo
 
 ## To postgrest
 

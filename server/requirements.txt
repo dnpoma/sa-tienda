@@ -1,2 +1,5 @@
-Flask
+Flask==2.2.3
 Flask-SQLAlchemy
+pymongo
+Flask-PyMongo
+pymongo

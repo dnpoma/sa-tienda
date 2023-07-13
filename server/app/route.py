@@ -7,4 +7,4 @@ tienda = Blueprint('tienda', __name__)
 
 @tienda.route('/')
 def hello():
-    return '¡Hola, mundo!'
+    return '¡Hola, bienvenido a la mejor tienda virtual!'
