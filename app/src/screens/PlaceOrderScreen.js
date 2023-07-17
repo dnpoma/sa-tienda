@@ -11,7 +11,7 @@ function PlaceOrderScreen(props) {
   const { cartItems, shipping, payment } = cart;
   if (!shipping.address) {
     props.history.push("/shipping");
-  } else if (!payment.payment_method) {
+  } else if (!payment.paymeMethod) {
     props.history.push("/payment");
   }
   const itemsPrice = cartItems.reduce((a, c) => a + c.price * c.qty, 0);
@@ -50,12 +50,12 @@ function PlaceOrderScreen(props) {
             <h3>Envío</h3>
             <div>
               {cart.shipping.address}, {cart.shipping.city},
-              {cart.shipping.postal_code}, {cart.shipping.country},
+              {cart.shipping.postalCode}, {cart.shipping.country},
             </div>
           </div>
           <div>
             <h3>Pago</h3>
-            <div>Método de Pago: {cart.payment.payment_method}</div>
+            <div>Método de Pago: {cart.payment.paymentMethod}</div>
           </div>
           <div>
             <ul className="cart-list-container">

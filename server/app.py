@@ -6,7 +6,7 @@ from app.routes.shipping import shipping
 from app.routes.review import review
 from app.routes.payment import payment
 from app.routes.orderRoute import orden     
-
+from app.routes.interaction import interaction   
 # from app.routes.order import order
 # from app.routes.order_item import orderItem
 
@@ -24,7 +24,7 @@ app.register_blueprint(shipping)
 app.register_blueprint(review)
 app.register_blueprint(payment)
 app.register_blueprint(orden)  
-
+app.register_blueprint(interaction)
 # app.register_blueprint(orderItem)
 # app.register_blueprint(order)
 

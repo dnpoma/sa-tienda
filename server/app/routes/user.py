@@ -20,6 +20,11 @@ def get_user(user_id):
         return jsonify({'error': 'User not found'}), 404
     return jsonify(user_to_dict(user))
 
+def getUser(user_id):
+    user = User.query.get(user_id)
+    if not user:
+        return jsonify({'error': 'User not found'}), 404
+    return user_to_dict(user)
 
 @user.route('/users', methods=['POST'])
 def create_user():

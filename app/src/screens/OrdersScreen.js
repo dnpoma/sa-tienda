@@ -50,17 +50,17 @@ function OrdersScreen(props) {
           </thead>
           <tbody>
             {orders.map((order) => (
-              <tr key={order.id}>
-                <td>{order.id}</td>
-                <td>{order.created_at}</td>
-                <td>{order.total_price}</td>
+              <tr key={order._id}>
+                <td>{order._id}</td>
+                <td>{order.createdAt}</td>
+                <td>{order.totalPrice}</td>
                 <td>{order.user.name}</td>
-                <td>{order.is_paid.toString()}</td>
-                <td>{order.paid_at}</td>
-                <td>{order.is_delivered.toString()}</td>
-                <td>{order.delivered_at}</td>
+                <td>{order.isPaid.toString()}</td>
+                <td>{order.paidAt}</td>
+                <td>{order.isDelivered.toString()}</td>
+                <td>{order.deliveredAt}</td>
                 <td>
-                  <Link to={"/order/" + order.id} className="button secondary">
+                  <Link to={"/order/" + order._id} className="button secondary">
                     Detalle
                   </Link>{" "}
                   <button

@@ -3,8 +3,17 @@ import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { listProducts } from "../actions/productActions";
 import Rating from "../components/Rating";
+import {
+  createInteraction,
+  createInteractionNoneUser,
+  getIPAddress,
+  createInteractionUser,
+  validateUser,
+} from "../actions/interactionActions";
 
 function HomeScreen(props) {
+  const userSignin = useSelector((state) => state.userSignin);
+  const { userInfo } = userSignin;
   const [searchKeyword, setSearchKeyword] = useState("");
   const [sortOrder, setSortOrder] = useState("");
   const category = props.match.params.id ? props.match.params.id : "";
@@ -13,7 +22,6 @@ function HomeScreen(props) {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(listProducts(category));
-
     return () => {
       //
     };
@@ -26,6 +34,24 @@ function HomeScreen(props) {
   const sortHandler = (e) => {
     setSortOrder(e.target.value);
     dispatch(listProducts(category, searchKeyword, sortOrder));
+  };
+
+  const handleSaveData = async (products) => {
+    const ipAddress = await getIPAddress();
+    let user = "";
+    if (userInfo) {
+      user = userInfo.id;
+      // Si el usuario ya existe
+      if (await validateUser(user)) {
+        createInteraction(user, products, ipAddress);
+      } else {
+        createInteractionUser(user, products, ipAddress);
+        // Si el usuario todavia no existe
+      }
+    } else {
+      // Si no esta logeao
+      createInteractionNoneUser(products, ipAddress);
+    }
   };
 
   return (
@@ -60,7 +86,10 @@ function HomeScreen(props) {
           {products.map((product) => (
             <li key={product.id}>
               <div className="product">
-                <Link to={"/product/" + product.id}>
+                <Link
+                  to={"/product/" + product.id}
+                  onClick={() => handleSaveData(product)}
+                >
                   <img
                     className="product-image"
                     src={product.image}
@@ -68,7 +97,12 @@ function HomeScreen(props) {
                   />
                 </Link>
                 <div className="product-name">
-                  <Link to={"/product/" + product.id}>{product.name}</Link>
+                  <Link
+                    to={"/product/" + product.id}
+                    onClick={() => handleSaveData(product)}
+                  >
+                    {product.name}
+                  </Link>
                 </div>
                 <div className="product-brand">{product.brand}</div>
                 <div className="product-price">${product.price}</div>

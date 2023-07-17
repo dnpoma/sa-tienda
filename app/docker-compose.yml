@@ -7,11 +7,11 @@ services:
     volumes:
       - .:/app
     networks:
-      - tienda_default
+      - sharded-mongodb-docker_internalnetwork
     ports:
       - "3000:3000"
     stdin_open: true
     tty: true
 networks:
-  tienda_default:
+  sharded-mongodb-docker_internalnetwork:
     external: true
